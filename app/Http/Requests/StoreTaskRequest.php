@@ -24,8 +24,8 @@ class StoreTaskRequest extends FormRequest
     {
         return [
         'title'=> 'required|string', 
-        'description' => 'text', 
-        'status' => 'required|max:1', 
+        'description' => 'nullable|string', 
+        'status' => 'required|in:Finish,On Progress,Pending', 
         'due_date' => 'required|date'
         ];
     }
