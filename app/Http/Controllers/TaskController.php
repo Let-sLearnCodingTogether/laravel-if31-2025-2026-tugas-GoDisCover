@@ -84,7 +84,27 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        try {
+            if($task->user_id == Auth::id()){
+            $validatedData = $request->safe()->all();
+            $validatedData['user_id'] = $request->user()->id;
+            $task = Task::create($validatedData);
+            return response()->json([
+                'message' => 'Quote berhasil diupdate',
+                'data' => $task
+            ], 201);
+        }else{
+                return Response::json([
+                    'message' => 'User Tidak Membuat task tersebut',
+                    'data' => null
+                ],401);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan pada server',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -92,6 +112,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        
     }
 }
