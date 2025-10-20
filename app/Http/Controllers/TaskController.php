@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class TaskController extends Controller
@@ -57,7 +58,25 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        try {
+            if($task->user_id == Auth::id()){  
+                return Response::json([
+                    'message' => 'List Berhasil',
+                    'data' => $task 
+                ], 200);
+            }else{
+                return Response::json([
+                    'message' => 'User Tidak Membuat task tersebut',
+                    'data' => null
+                ],401);
+            }
+
+        } catch (Exception $e) {
+            return Response::json([
+                'message' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
     }
 
     /**
