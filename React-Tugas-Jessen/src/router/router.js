@@ -1,12 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import ProtectedRoute from "./protectedRoute";
-const ProtectedRoute = () =>{
-    const user = null
-    return user ? <Outlet/> : <Navigate to ="/login"/>
-}
+
 const router = createBrowserRouter([
     {   
-        path: "/login",
+        path: "/",
         lazy: {
             Component: async () => {
                 const component = await import("../auth/login")
@@ -15,9 +11,18 @@ const router = createBrowserRouter([
             }
         }
     },
+    {   
+        path: "/register",
+        lazy: {
+            Component: async () => {
+                const component = await import("../auth/register")
+
+                return component.default
+            }
+        }
+    },
     {
-        ProtectedRoute
-        path: "/",
+        path: "/home",
         lazy: {
             Component: async () => {
                 
