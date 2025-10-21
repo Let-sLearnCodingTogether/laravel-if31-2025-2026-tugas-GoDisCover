@@ -18,7 +18,6 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         try {
-
             $task = Task::where('user_id', $request->user()->id)->get();
                 return Response::json([
                     'message' => 'List Berhasil',
@@ -86,20 +85,20 @@ class TaskController extends Controller
     {
         try {
             if($task->user_id == Auth::id()){
-            $validatedData = $request->safe()->all();
-            $validatedData['user_id'] = $request->user()->id;
-            $task = Task::create($validatedData);
-            return response()->json([
-                'message' => 'Quote berhasil diupdate',
-                'data' => $task
-            ], 201);
-        }else{
+                $validated = $request->safe()->all();
+                $task->update($validated);
+                return Response::json([
+                    'message' => "Task updated",
+                    'data' => $task
+                ], 200);
+            }
+
                 return Response::json([
                     'message' => 'User Tidak Membuat task tersebut',
                     'data' => null
                 ],401);
             }
-        } catch (\Exception $e) {
+            catch (\Exception $e) {
             return response()->json([
                 'message' => 'Terjadi kesalahan pada server',
                 'error' => $e->getMessage()
@@ -110,8 +109,27 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task, Request $request)
     {
-        
+        try {
+            if($task->user_id == Auth::id()){
+                $task->delete();
+                return Response::json([
+                    'message' => "Task Terhapus",
+                    'data' => $task
+                ], 200);
+            }
+
+                return Response::json([
+                    'message' => 'User Tidak Membuat task tersebut',
+                    'data' => null
+                ],401);
+            }
+            catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan pada server',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }
