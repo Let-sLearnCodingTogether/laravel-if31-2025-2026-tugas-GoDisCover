@@ -12,7 +12,6 @@ Route::middleware('guest')->group(function(){
 Route::post('/logout',function(Request $request){
     return $request->user();
 })->middleware('auth:sanctum');
-
 Route::apiResource('/task',TaskController::class)->middleware('auth:sanctum');
 
 Route::get('/user', function (Request $request) {

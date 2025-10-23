@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
     {   
@@ -27,6 +27,17 @@ const router = createBrowserRouter([
             Component: async () => {
                 
                 const component = await import("../page/home")
+
+                return component.default
+            }
+        }
+    },
+    {
+        path: "/createTask",
+        lazy: {
+            Component: async () => {
+                
+                const component = await import("../page/CreateTask")
 
                 return component.default
             }

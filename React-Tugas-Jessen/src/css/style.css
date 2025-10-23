@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+.bg-gambar-1 {
+  background-image: url('/src/assets/images/bg.jpg');
+  background-size: contain;
+  background-position: center;
+}
