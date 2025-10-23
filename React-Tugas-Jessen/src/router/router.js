@@ -42,7 +42,18 @@ const router = createBrowserRouter([
                 return component.default
             }
         }
+    },{
+        path: "/EditTask/:id",
+        lazy: {
+            Component: async () => {
+                
+                const component = await import(`../page/EditTask`)
+
+                return component.default
+            }
+        }
     }
+
     
 ]);
 
