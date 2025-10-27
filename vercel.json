@@ -14,8 +14,8 @@
         "APP_NAME": "Learn Laravel",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://uts-if31-laravel.vercel.app", // ganti dengan url kalian
-        "APP_KEY" : "base64:ZrFD+JY3KtLCDW7zsXx8/S6/HIioYVBsR9EhQ5TtNnU=", // Ganti dengan app key kalian
+        "APP_URL": "",
+        "APP_KEY" : "base64:YC9iSwAY2aUdR9oiegGEJQeDZ8T/BKd7N9Yj0+KWcQg", 
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
