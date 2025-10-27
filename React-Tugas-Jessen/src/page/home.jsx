@@ -51,7 +51,7 @@ export default function home() {
   }, [fetchtTask])
   return (
     <div className="container mx-auto space-y-5">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center">
         <h1 className="font-semibold text-2xl">Tasks</h1>
         <button
           onClick={handleLogout}

@@ -28,7 +28,7 @@ export default function Login() {
       console.log(response.data)
 
       if (response.data?.token) {
-        apiClient.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
+        sessionStorage.setItem('token', response.data.token);
         setIsAuthenticated(true)
       } else {
         setError("Invalid credentials. Please try again.");
@@ -49,14 +49,14 @@ export default function Login() {
   }, [isAuthenticated, navigate])
   return (
     <div className="flex flex-col flex-1 bg-gambar-1">
-      <div className="hidden bg-gambar-1 md:block">
+      <div className="bg-gambar-1 md:block">
         <div className="flex flex-col justify-center flex-1 w-full min-h-screen max-w-md mx-auto ">
           <div className="bg-gray-100 p-10 rounded-2xl">
             <div >
-              <h1 className="mb-2 font-bold text-gray-800 dark:text-white/90 text-2xl">
+              <h1 className="mb-2 font-bold text-gray-800 text-2xl">
                 Sign In
               </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-500 ">
                 Enter your email and password to sign in!
               </p>
             </div>
@@ -68,7 +68,7 @@ export default function Login() {
               )}
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                  <label className="mb-1.5 block text-sm font-medium text-gray-700">
                     Email <span className="text-red-500">*</span>{" "}
                   </label>
                   <input className="h-11 w-full rounded-lg border border-gray-300 appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3 "
@@ -79,10 +79,10 @@ export default function Login() {
                     name="email" />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                  <label className="mb-1.5 block text-sm font-medium text-gray-400">
                     Password <span className="text-red-500">*</span>{" "}
                   </label>
-                  <input className="h-11 w-full rounded-lg border border-gray-300 appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-3  dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
+                  <input className="h-11 w-full rounded-lg border border-gray-300 appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden focus:ring-"
                     placeholder="Your Password"
                     value={logins.password}
                     onChange={handlerOnChange}
