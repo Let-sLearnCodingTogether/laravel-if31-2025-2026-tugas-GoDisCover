@@ -15,7 +15,6 @@ export default function home() {
   const fetchtTask = useCallback(async () => {
     try {
       setLoading(true)
-      //mengambil data movie dari endpoint "/movies"
       const response = await http.get("/task")
       console.log(response.data.data)
       setTasks(response.data.data)

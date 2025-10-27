@@ -28,7 +28,7 @@ export default function Login() {
       console.log(response.data)
 
       if (response.data?.token) {
-        sessionStorage.apiClient.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
+        apiClient.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
         setIsAuthenticated(true)
       } else {
         setError("Invalid credentials. Please try again.");
